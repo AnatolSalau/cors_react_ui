@@ -21,6 +21,8 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
 import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  *    Security configuration with CSRF token
@@ -41,6 +43,16 @@ public class SecurityConfiguration {
       public WebSecurityCustomizer
       webSecurityCustomizer() {
             return (web) -> web.debug(webSecurityDebug);
+      }
+
+      @Bean
+      public WebMvcConfigurer corsConfigurer() {
+            return new WebMvcConfigurer() {
+                  @Override
+                  public void addCorsMappings(CorsRegistry registry) {
+                        registry.addMapping("/").allowedOrigins("http://localhost:3000/");
+                  }
+            };
       }
 
       @Bean
