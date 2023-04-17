@@ -1,0 +1,47 @@
+
+Request received for POST '/api/v1/users':
+
+org.apache.catalina.connector.RequestFacade@d9ffadc
+
+servletPath:/api/v1/users
+pathInfo:null
+headers:
+x-xsrf-token: a4755fd0-a4f1-43f7-b58c-75d85c9e56a1
+authorization: Basic dXNlcjp1c2Vy
+user-agent: PostmanRuntime/7.29.2
+accept: */*
+cache-control: no-cache
+postman-token: 92adc88a-2e9a-4661-ba6f-fe5b8e87fadf
+host: 127.0.0.1:8443
+accept-encoding: gzip, deflate, br
+connection: keep-alive
+cookie: JSESSIONID=98D8B139BE45354EB455EB9FB9BB3EFC; XSRF-TOKEN=a4755fd0-a4f1-43f7-b58c-75d85c9e56a1
+content-length: 0
+
+//--------------------------------------------------------------------------
+
+Request received for POST '/api/v1/users':
+
+org.apache.catalina.connector.RequestFacade@704d73b0
+
+servletPath:/api/v1/users
+pathInfo:null
+headers:
+host: 127.0.0.1:8443
+connection: keep-alive
+content-length: 0
+sec-ch-ua: "Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"
+x-xsrf-token: a4755fd0-a4f1-43f7-b58c-75d85c9e56a1
+sec-ch-ua-mobile: ?0
+authorization: Basic dXNlcjp1c2Vy
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+content-type: application/json
+accept: application/json
+sec-ch-ua-platform: "Windows"
+origin: http://localhost:3000
+sec-fetch-site: cross-site
+sec-fetch-mode: cors
+sec-fetch-dest: empty
+referer: http://localhost:3000/
+accept-encoding: gzip, deflate, br
+accept-language: ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7

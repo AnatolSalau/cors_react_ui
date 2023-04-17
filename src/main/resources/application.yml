@@ -29,4 +29,4 @@ server:
       key-store-password: 123456789
       key-password: 123456789
 websecurity:
-   debug: false
+   debug: true

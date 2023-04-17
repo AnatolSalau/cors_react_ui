@@ -32,7 +32,7 @@ public class IndexController {
 
             info.put("Authentication name", authentication1.getName());
             info.put("contextName ", contextName);
-            info.put("context authorities ", authorities1);
+            info.put("context authorities", authorities1);
             return info;
       }
 }

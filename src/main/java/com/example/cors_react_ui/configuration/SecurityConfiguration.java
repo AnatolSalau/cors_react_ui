@@ -21,8 +21,13 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
 import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Arrays;
 
 /**
  *    Security configuration with CSRF token
@@ -50,14 +55,20 @@ public class SecurityConfiguration {
             return new WebMvcConfigurer() {
                   @Override
                   public void addCorsMappings(CorsRegistry registry) {
-                        registry.addMapping("/").allowedOrigins("http://localhost:3000/");
+                        registry
+                              .addMapping("/**")
+                              .allowedOrigins("http://localhost:3000/")
+/*                              .allowCredentials(true)*/
+                        ;
                   }
             };
       }
 
+
       @Bean
       public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
+            tokenRepository.setHeaderName("X-XSRF-TOKEN");
             XorCsrfTokenRequestAttributeHandler delegate = new XorCsrfTokenRequestAttributeHandler();
             // set the name of the attribute the CsrfToken will be populated on
             delegate.setCsrfRequestAttributeName("_csrf");
@@ -83,13 +94,15 @@ public class SecurityConfiguration {
                   .authenticated()
                   .anyRequest().denyAll()
                   .and()
-/*                  .csrf((csrf) -> csrf
+                  .csrf((csrf) -> csrf
                         .csrfTokenRepository(tokenRepository)
                         .csrfTokenRequestHandler(requestHandler)
-                  )*/
-                  .csrf((csrf) -> csrf
-                        .disable()
                   )
+/*                  .csrf((csrf) -> csrf
+                        .disable()
+                  )*/
+                  .cors()
+                  .and()
                   .httpBasic(Customizer.withDefaults());
 
             return http.build();
