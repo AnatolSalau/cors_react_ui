@@ -57,7 +57,8 @@ public class SecurityConfiguration {
                   public void addCorsMappings(CorsRegistry registry) {
                         registry
                               .addMapping("/**")
-                              .allowedOrigins("http://localhost:3000/")
+                              .allowedOrigins("https://localhost:3000/")
+                              .allowCredentials(true)
 /*                              .allowCredentials(true)*/
                         ;
                   }
@@ -65,16 +66,13 @@ public class SecurityConfiguration {
       }
 
 
+
       @Bean
       public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
-            tokenRepository.setHeaderName("X-XSRF-TOKEN");
-            XorCsrfTokenRequestAttributeHandler delegate = new XorCsrfTokenRequestAttributeHandler();
-            // set the name of the attribute the CsrfToken will be populated on
-            delegate.setCsrfRequestAttributeName("_csrf");
-            // Use only the handle() method of XorCsrfTokenRequestAttributeHandler and the
-            // default implementation of resolveCsrfTokenValue() from CsrfTokenRequestHandler
-            CsrfTokenRequestHandler requestHandler = delegate::handle;
+            CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+            // (optional) set null to opt out of deferred tokens
+            requestHandler.setCsrfRequestAttributeName(null);
 
             http
                   .authorizeHttpRequests()
