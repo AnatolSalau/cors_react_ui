@@ -30,7 +30,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Arrays;
 
 /**
- *    Security configuration with CSRF token
+ *    Security configuration with CSRF token and CORS
  */
 @Configuration
 @EnableWebSecurity
@@ -50,6 +50,10 @@ public class SecurityConfiguration {
             return (web) -> web.debug(webSecurityDebug);
       }
 
+      /**
+       * Add CORS urls
+       * @return
+       * */
       @Bean
       public WebMvcConfigurer corsConfigurer() {
             return new WebMvcConfigurer() {
@@ -64,6 +68,11 @@ public class SecurityConfiguration {
             };
       }
 
+      /**
+       * Add CSRF token by :
+       * CookieCsrfTokenRepository.withHttpOnlyFalse()
+       * CsrfTokenRequestAttributeHandler()
+       */
       @Bean
       public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
