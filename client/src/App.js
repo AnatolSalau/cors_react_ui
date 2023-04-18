@@ -5,10 +5,9 @@ import { useCookies } from "react-cookie";
 
 function App() {
       const [cookies, setCookie] = useCookies(['XSRF-TOKEN'])
-      axios.defaults.withCredentials = true;
 
-      setCookie('XSRF-TOKEN', 'bf108123-f914-4abe-b0d4-9206c7e8393f');
-
+      /*setCookie('XSRF-TOKEN', 'bf108123-f914-4abe-b0d4-9206c7e8393f');*/
+      setCookie('XSRF-TOKEN', '11111111-f914-4abe-b0d4-9206c7e8393f');
       const sendRequest = async (url) => {
             let response = await fetch(url);
             console.log(response)
@@ -32,6 +31,7 @@ function App() {
       const sendRequestBasicAuth = async (url, options) => {
             let response = await fetch(url, options);
             let jsonResponse = await response.json();
+            console.log(jsonResponse);
             return jsonResponse;
       }
 
@@ -40,9 +40,11 @@ function App() {
       let data = {
             "min":"min"
       };
-
       const postAxios = (url) => {
+            console.log("Cookies:")
+            console.log(document.cookie);
             axios.post(url, data, {
+                  withCredentials: true,
                   headers: {
                         "Content-Type": "application/json",
                         "Authorization": "Basic dXNlcjp1c2Vy",

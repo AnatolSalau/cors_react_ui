@@ -57,9 +57,8 @@ public class SecurityConfiguration {
                   public void addCorsMappings(CorsRegistry registry) {
                         registry
                               .addMapping("/**")
-                              .allowedOrigins("https://localhost:3000/")
+                              .allowedOrigins("https://127.0.0.1:3000/")
                               .allowCredentials(true)
-/*                              .allowCredentials(true)*/
                         ;
                   }
             };
@@ -72,7 +71,7 @@ public class SecurityConfiguration {
             CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
             CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
             // (optional) set null to opt out of deferred tokens
-            requestHandler.setCsrfRequestAttributeName(null);
+            requestHandler.setCsrfRequestAttributeName("_csrf");
 
             http
                   .authorizeHttpRequests()
