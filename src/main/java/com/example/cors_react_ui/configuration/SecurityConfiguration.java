@@ -64,8 +64,6 @@ public class SecurityConfiguration {
             };
       }
 
-
-
       @Bean
       public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             CookieCsrfTokenRepository tokenRepository = CookieCsrfTokenRepository.withHttpOnlyFalse();
@@ -95,9 +93,6 @@ public class SecurityConfiguration {
                         .csrfTokenRepository(tokenRepository)
                         .csrfTokenRequestHandler(requestHandler)
                   )
-/*                  .csrf((csrf) -> csrf
-                        .disable()
-                  )*/
                   .cors()
                   .and()
                   .httpBasic(Customizer.withDefaults());

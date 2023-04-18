@@ -5,7 +5,9 @@ import { useCookies } from "react-cookie";
 
 function App() {
       const [cookies, setCookie] = useCookies(['XSRF-TOKEN'])
-
+      /**
+       * Set cookie
+       */
       /*setCookie('XSRF-TOKEN', 'bf108123-f914-4abe-b0d4-9206c7e8393f');*/
       setCookie('XSRF-TOKEN', '11111111-f914-4abe-b0d4-9206c7e8393f');
       const sendRequest = async (url) => {
